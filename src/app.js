@@ -81,7 +81,8 @@ var ListView = Backbone.View.extend({
     this.collection.add(model);
   },
   appendItem: function(model) {
-    var itemView = new ItemView({ model: model });
+    var itemView = new ItemView({ el: "<li>", model: model });
+    console.log(itemView);
     $(this.el).append(itemView.render().el);
   },
   render: function() {

@@ -14439,14 +14439,7 @@ var ItemView = Backbone.View.extend({
     "keyup .js-todo_list-editForm": "closeEdit"
   },
   initialize: function() {
-    _.bindAll(
-      this,
-      "toggleDone",
-      "render",
-      "remove",
-      "showEdit",
-      "closeEdit"
-    );
+    _.bindAll(this, "toggleDone", "render", "remove", "showEdit", "closeEdit");
     this.model.bind("change", this.render);
     this.model.bind("destroy", this.remove);
     this.render();
@@ -14485,7 +14478,8 @@ var ListView = Backbone.View.extend({
     this.collection.add(model);
   },
   appendItem: function(model) {
-    var itemView = new ItemView({ model: model });
+    var itemView = new ItemView({ el: "<li>", model: model });
+    console.log(itemView);
     $(this.el).append(itemView.render().el);
   },
   render: function() {
@@ -14554,9 +14548,7 @@ var SearchView = Backbone.View.extend({
       if (text && text.match(regexp)) {
         model.set({ isShow: true });
       } else {
-        // console.log(model);
         model.set({ isShow: false });
-        // model.toggleShow();
       }
     });
   },
